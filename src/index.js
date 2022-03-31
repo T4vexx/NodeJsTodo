@@ -79,11 +79,10 @@ app.put('/todos/:id', checksExistsUserAccount, (request, response) => {
     return response.status(404).json({ error: "Todo not find"})
   }
 
-  user.todos.splice(objTodo, 1)
 
   objTodo.title = title;
   objTodo.deadline = new Date(deadline);
-  user.todos.push(objTodo)
+
 
   return response.status(200).json(objTodo)
   
@@ -98,10 +97,8 @@ app.patch('/todos/:id/done', checksExistsUserAccount, (request, response) => {
   if (!objTodo) {
     return response.status(404).json({ error: "Todo not find"})
   }
-  user.todos.splice(objTodo, 1)
   objTodo.done = true;
 
-  user.todos.push(objTodo)
 
   return response.status(200).json(objTodo)
 });
